@@ -43,14 +43,6 @@ struct FramePubRec: Frame {
 
 extension FramePubRec {
     
-    func fixedHeader() -> [UInt8] {
-        
-        var header = [UInt8]()
-        header += [FrameType.pubrec.rawValue]
-
-        return header
-    }
-    
     func variableHeader5() -> [UInt8] {
         
         //3.5.2 MSB+LSB

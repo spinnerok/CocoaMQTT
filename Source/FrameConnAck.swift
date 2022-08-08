@@ -45,13 +45,6 @@ struct FrameConnAck: Frame {
 
 extension FrameConnAck {
     
-    func fixedHeader() -> [UInt8] {
-        var header = [UInt8]()
-        header += [FrameType.connack.rawValue]
-        
-        return header
-    }
-
     func variableHeader5() -> [UInt8] {
         return [sessPresent.bit, reasonCode!.rawValue]
     }

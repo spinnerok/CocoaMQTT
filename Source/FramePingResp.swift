@@ -18,14 +18,6 @@ struct FramePingResp: Frame {
 
 extension FramePingResp {
     
-    func fixedHeader() -> [UInt8] {
-        
-        var header = [UInt8]()
-        header += [FrameType.pingresp.rawValue]
-
-        return header
-    }
-    
     func variableHeader5() -> [UInt8] { return [] }
     
     func payload5() -> [UInt8] { return [] }

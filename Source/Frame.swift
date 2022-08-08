@@ -85,7 +85,7 @@ protocol Frame {
     /// MQTT 3.1.1
     var packetFixedHeaderType: UInt8 {get set}
     /// MQTT 5.0
-    func fixedHeader() -> [UInt8]
+    func fixedHeader5() -> UInt8
 
     /// Some types of MQTT Control Packets contain a variable header component
     /// MQTT 3.1.1
@@ -114,7 +114,7 @@ extension Frame {
     func bytes(version: String) -> [UInt8] {
 
         if version == "5.0" {
-            let fixedHeader = self.fixedHeader()
+            let fixedHeader = self.fixedHeader5()
             let variableHeader5 = self.variableHeader5()
             let payload5 = self.payload5()
             let properties = self.properties()
@@ -129,7 +129,7 @@ extension Frame {
             printDebug("payload \(payload5)")
             printDebug("=============================================================")
 
-            return [packetFixedHeaderType] + remainingLen(len: len5) + variableHeader5 + properties + payload5
+            return [fixedHeader] + remainingLen(len: len5) + variableHeader5 + properties + payload5
         }else {
 
             let variableHeader = self.variableHeader()
@@ -218,16 +218,25 @@ extension Frame {
 
 /// allData common implementation
 extension Frame {
-    
+
     func allData() -> [UInt8] {
         var allData = [UInt8]()
 
-        allData += fixedHeader()
+        allData += [fixedHeader5()]
         allData += variableHeader5()
         allData += properties()
         allData += payload5()
 
         return allData
+    }
+
+}
+
+/// fixedHeader common implementation
+extension Frame {
+    
+    func fixedHeader5() -> UInt8 {
+        return packetFixedHeaderType & 0xF0
     }
 
 }

@@ -37,14 +37,6 @@ struct FrameUnsubAck: Frame {
 
 extension FrameUnsubAck {
     
-    func fixedHeader() -> [UInt8] {
-        
-        var header = [UInt8]()
-        header += [FrameType.unsuback.rawValue]
-
-        return header
-    }
-    
     func variableHeader5() -> [UInt8] {
         
         //3.11.2 MSB+LSB

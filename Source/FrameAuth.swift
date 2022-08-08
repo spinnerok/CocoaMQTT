@@ -27,14 +27,6 @@ struct FrameAuth: Frame {
 
 extension FrameAuth {
     
-    func fixedHeader() -> [UInt8] {
-        var header = [UInt8]()
-        header += [FrameType.auth.rawValue]
-        //header += [UInt8(variableHeader5().count)]
-
-        return header
-    }
-
     func variableHeader5() -> [UInt8] {
         var header = [UInt8]()
         header += [sendReasonCode!.rawValue]

@@ -45,17 +45,12 @@ struct FrameUnsubscribe: Frame {
         qos = CocoaMQTTQoS.qos1
     }
 
-
 }
 
 extension FrameUnsubscribe {
     
-    func fixedHeader() -> [UInt8] {
-        
-        var header = [UInt8]()
-        header += [FrameType.unsubscribe.rawValue]
-
-        return header
+    func fixedHeader5() -> UInt8 {
+        return packetFixedHeaderType & 0b1111_0010
     }
     
     func variableHeader5() -> [UInt8] {

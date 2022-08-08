@@ -49,12 +49,8 @@ struct FramePublish: Frame {
 
 extension FramePublish {
     
-    func fixedHeader() -> [UInt8] {
-        
-        var header = [UInt8]()
-        header += [FrameType.publish.rawValue]
-
-        return header
+    func fixedHeader5() -> UInt8 {
+        return packetFixedHeaderType
     }
     
     func variableHeader5() -> [UInt8] {

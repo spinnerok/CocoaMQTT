@@ -59,14 +59,6 @@ struct FrameConnect: Frame {
 
 extension FrameConnect {
     
-    func fixedHeader() -> [UInt8] {
-        
-        var header = [UInt8]()
-        header += [FrameType.connect.rawValue]
-
-        return header
-    }
-
     func variableHeader5() -> [UInt8] {
         
         var header = [UInt8]()
