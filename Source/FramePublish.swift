@@ -83,18 +83,6 @@ extension FramePublish {
         return publishProperties?.properties ?? []
     }
 
-    func allData() -> [UInt8] {
-        
-        var allData = [UInt8]()
-
-        allData += fixedHeader()
-        allData += variableHeader5()
-        allData += properties()
-        allData += payload5()
-
-        return allData
-    }
-
     func variableHeader() -> [UInt8] {
 
         var header = topic.bytesWithLength

@@ -216,4 +216,18 @@ extension Frame {
     }
 }
 
+/// allData common implementation
+extension Frame {
+    
+    func allData() -> [UInt8] {
+        var allData = [UInt8]()
 
+        allData += fixedHeader()
+        allData += variableHeader5()
+        allData += properties()
+        allData += payload5()
+
+        return allData
+    }
+
+}
